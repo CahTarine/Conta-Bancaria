@@ -2,7 +2,7 @@ package conta.model;
 
 import conta.util.Cores;
 
-public class Conta {
+public abstract class Conta {
 	private int numero;
 	private int agencia;
 	private int tipo;
@@ -68,6 +68,8 @@ public class Conta {
 		this.saldo = saldo;
 	}
 	
+	
+	
 	public boolean sacar (float valor) {
 		if (this.getSaldo() < valor) {
 			System.out.println("\n Saldo Insuficiente!");
@@ -77,9 +79,13 @@ public class Conta {
 		return true;
 	}
 	
+	
+	
 	public void depositar (float valor) {
 		this.setSaldo(this.getSaldo() + valor);
 	}
+	
+	
 	
 	public void visualizar() {
 		String tipo = "";
