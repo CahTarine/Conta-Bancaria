@@ -19,9 +19,9 @@ public class Menu {
 		
 		Scanner lerScanner = new Scanner (System.in);
 		
-		int opcao, numero, agencia, tipo, aniversario;
+		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 		
 		System.out.println("\nCriar Contas\n");
 		ContaCorrente cc1 = new ContaCorrente(contas.gerarNumero(), 123, 1, "joao da silva", 1000f, 100.0f);
@@ -119,40 +119,132 @@ public class Menu {
 				
 				keyPress();
 				break;
+				
 			case 3:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Consultar dados da Conta - por número\n\n");
-				keyPress();
 				
+				System.out.println("Digite o número da conta: ");
+				numero = lerScanner.nextInt();
+				
+				contas.procurarPorNumero(numero);
+				
+				keyPress();
 				break;
+				
 			case 4:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Atualizar dados da Conta\n\n");
-				keyPress();
 				
+				System.out.println("Digite o número da conta: ");
+				numero = lerScanner.nextInt();
+				
+				var buscarConta = contas.buscarNaCollection(numero);
+				
+				if (buscarConta != null ) {
+					
+					tipo = buscarConta.getTipo();
+					System.out.println();
+					
+					System.out.println("Digite o número da Agencia: ");
+					agencia = lerScanner.nextInt();
+					System.out.println("Digite o nome do Titular: ");
+					lerScanner.skip("\\R?");
+					titular = lerScanner.nextLine();
+					
+					System.out.println("Digite o Saldo da Conta (R$): ");
+					saldo = lerScanner.nextFloat();
+					
+					switch (tipo) {
+						case 1 -> {
+							System.out.println("Digite o limite de Crédito (R$): ");
+							limite = lerScanner.nextFloat();
+							
+							contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+						}
+						case 2 -> {
+							System.out.println("Digite o dia do Aniversário da Conta: ");
+							aniversario = lerScanner.nextInt();
+							
+							contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+						}
+						default -> {
+							System.out.println("Tipo de conta inválido!");
+						}
+					}
+				} else {
+					System.out.println("A Conta nao foi encontrada! ");
+				}
+				
+				keyPress();
 				break;
+				
 			case 5:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Apagar a Conta\n\n");
-				keyPress();
 				
+				System.out.println("Digite o número da conta: ");
+				numero = lerScanner.nextInt();
+				
+				contas.deletar(numero);
+				
+				keyPress();
 				break;
+				
 			case 6:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Saque\n\n");
+				
+				System.out.println("Digite o número da conta: ");
+				numero = lerScanner.nextInt();
+				
+				do {
+					System.out.println("Digite o Valor do Saque (R$): ");
+					valor = lerScanner.nextFloat();
+				} while (valor <= 0);
+				
+				contas.sacar(numero, valor);
+				
 				keyPress();
-
 				break;
+				
 			case 7:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Depósito\n\n");
+				
+				System.out.println("Digite o número da conta: ");
+				numero = lerScanner.nextInt();
+				
+				do {
+					System.out.println("Digite o Valor do Depósito: ");
+					valor = lerScanner.nextFloat();
+					
+				} while (valor <= 0);
+				
+				contas.depositar(numero, valor);
+				
 				keyPress();
-
 				break;
+				
 			case 8:
 				System.out.println(Cores.TEXT_WHITE_BOLD + "Transferência entre Contas\n\n");
-				keyPress();
 				
+				System.out.println("Digite o Número da Conta de Origem: ");
+				numero = lerScanner.nextInt();
+				System.out.println("Digite o Número da Conta de Destino: ");
+				numeroDestino = lerScanner.nextInt();
+				
+				do {
+					System.out.println("\nDigite o Valor da Transferencia (R$): ");
+					valor = lerScanner.nextFloat();
+					
+				} while (valor <= 0);
+				
+				contas.transferir(numero, numeroDestino, valor);
+				
+				
+				keyPress();
 				break;
+				
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD + "\nOpção Inválida!\n" + Cores.TEXT_RESET);
-				keyPress();
 				
+				keyPress();
 				break;
 			}
 		}
