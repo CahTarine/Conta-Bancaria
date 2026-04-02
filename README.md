@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-concluído-purple?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Java-21-purple?style=for-the-badge&logo=java&logoColor=white" />
+  <img src="https://img.shields.io/badge/Java-17+-purple?style=for-the-badge&logo=java&logoColor=white" />
   <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=eclipse&logoColor=white" />
 </p>
 
@@ -18,19 +18,19 @@ O Projeto Conta Bancária é uma aplicação Java que simula as principais opera
 
 ## ⚙️ Funcionalidades
 
-- Cadastro e gerenciamento de contas bancárias  
-- Depósitos, saques e transferências  
-- Consulta de saldo  
-- Tratamento de exceções para operações inválidas  
+- Cadastro e gerenciamento de contas bancárias;  
+- Depósitos, saques e transferências; 
+- Consulta de saldo;  
+- Tratamento de exceções para operações inválidas;  
 
 ##
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Java 8 ou superior  
-- Eclipse IDE  
-- Arquitetura MVC (Model-View-Controller)  
-- Programação Orientada a Objetos (POO)  
+- Java;
+- Eclipse IDE;  
+- Arquitetura MVC (Model-View-Controller);  
+- Programação Orientada a Objetos (POO);  
 
 ##
 
